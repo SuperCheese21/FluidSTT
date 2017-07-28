@@ -1,0 +1,16 @@
+{
+    "name": "WatsonAPITest",
+    "version": "1.0.5",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "node main.js",
+        "clean": "node clean.js"
+    },
+    "keywords": [],
+    "author": "Ethan Shields",
+    "license": "GNU",
+    "dependencies": {
+        "watson-developer-cloud/speech-to-text/v1": "^1.0"
+    }
+}
