@@ -13,12 +13,9 @@ for (var i in audioFiles) {
     var file = audioFiles[i];
 
     if (file.indexOf('.flac') !== -1) {
-        console.log(file);
-
-        var type = 'audio/' + file.split('.')[1];
         var params = {
             audio: fs.createReadStream('audio/' + file),
-            content_type: type
+            content_type: 'audio/flac'
         };
         request.request(file, speechToText, params);
     }

@@ -7,7 +7,7 @@ var Convert = {
                 throw e;
             }
             var content = JSON.parse(d);
-            writeTxt(file, content);
+            this.writeTxt(file, content);
         });
     },
 

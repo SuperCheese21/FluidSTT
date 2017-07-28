@@ -10,7 +10,7 @@ var RequestTranscript = {
                 var fileName = file.split('.flac')[0] + '.json';
                 var contents = JSON.stringify(transcript, null, '\t');
 
-                fs.writeFile(fileName, contents, (e) => {
+                fs.writeFile('output/json/' + fileName, contents, (e) => {
                     if (e) {
                         console.log(e.message);
                     }
