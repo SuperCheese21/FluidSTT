@@ -1,32 +1,40 @@
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
-const fs = require('fs');
-const request = require('./request.js');
-const convert = require('./convert.js');
+const Fs = require('fs');
+const Promise = require('promise');
+const Convert = require('./convert.js');
 
 var speechToText = new SpeechToTextV1 ({
     username: '62ab9399-13af-48c8-9a48-96b8506fcae1',
     password: 'iXH0UsqFJsuy'
 });
+var sessionID = "";
+var audioFiles = Fs.readdirSync('audio/');
 
-var audioFiles = fs.readdirSync('audio/');
-for (var i in audioFiles) {
-    var file = audioFiles[i];
-
-    if (file.indexOf('.flac') !== -1) {
-        var params = {
-            audio: fs.createReadStream('audio/' + file),
-            content_type: 'audio/flac'
-        };
-        request.request(file, speechToText, params);
+speechToText.createSession({}, function(error, session) {
+    if (error)
+        console.log('Error:', error);
+    else {
+        console.log('Session ID: ' + session.session_id);
+        sessionID = session.session_id;
     }
-}
+});
 
-var jsonFiles = fs.readdirSync('output/json/');
-for (var i in jsonFiles) {
-    var file = jsonFiles[i];
+var file = 'test1.flac';
+console.log('file: ' + file + ', i: ' + i);
+console.log('Requesting transcript for ' + file + '...');
 
-    if (file.indexOf('.json') !== -1) {
-        console.log(file);
-        convert.convertJSON(file);
+var params = {
+    'session_id': sessionID,
+    'audio': Fs.createReadStream('audio/' + file),
+    'content_type': 'audio/flac'
+};
+speechToText.recognize(params, (error, transcript) => {
+    if (error) {
+        console.log('Error: ', error.message);
+    } else {
+        var fileName = file.split('.flac')[0];
+        var content = JSON.stringify(transcript, null, '\t');
+
+        Convert.convertJSON(fileName, content);
     }
-}
+});

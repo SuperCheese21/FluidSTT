@@ -1,30 +1,31 @@
-const fs = require('fs');
+const Fs = require('fs');
 
-var Convert = {
-    convertJSON: (file) => {
-        fs.readFile('output/json/' + file, (e, d) => {
-            if (e) {
-                throw e;
-            }
-            var content = JSON.parse(d);
-            this.writeTxt(file, content);
-        });
-    },
-
-    writeTxt: (file, content) => {
-        var text = "";
-        var outputFile = file.split('.json')[0] + '.txt';
-
-        for (var i in content.results.length) {
-            text += content.results[i].alternatives[0].transcript;
+var writeOutput = function(name, json, text) {
+    Fs.writeFile('output/json/' + name + '.json', json, (e) => {
+        if (e) {
+            console.log(e.message);
         }
-        fs.writeFile('output/txt/' + outputFile, text, (e) => {
-            if (e) {
-                console.log(e.message);
-            }
-            console.log(outputFile);
-        });
-    }
+        console.log(name + '.json');
+    });
+    Fs.writeFile('output/txt/' + name + '.txt', text, (e) => {
+        if (e) {
+            console.log(e.message);
+        }
+        console.log(name + '.txt');
+    });
 }
 
-module.exports = Convert;
+var convertJSON = function(file, json) {
+    var content = JSON.parse(json);
+    var text = '';
+
+    for (var i = 0; i < content.results.length; i++) {
+        text += content.results[i].alternatives[0].transcript;
+    }
+    writeOutput(file, json, text);
+}
+
+module.exports = {
+    writeOutput: writeOutput,
+    convertJSON: convertJSON
+}
