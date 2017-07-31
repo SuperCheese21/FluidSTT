@@ -12,10 +12,9 @@ for (var i = 0; i < directories.length; i++) {
         var file = files[j];
         Fs.unlink(directories[i] + file, (e) => {
             if (e) {
-                console.log(e.message);
-            } else {
-                console.log('Removed ' + file);
+                console.log('Error: ' + e.message);
             }
         });
+        console.log('Removed ' + file);
     }
 }

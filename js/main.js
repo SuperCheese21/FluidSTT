@@ -2,7 +2,6 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const Fs = require('fs');
 const Request = require('./request.js')
 
-var i = 0;
 var files = Fs.readdirSync('audio/');
 
 var speechToText = new SpeechToTextV1 ({
@@ -10,18 +9,20 @@ var speechToText = new SpeechToTextV1 ({
     password: 'iXH0UsqFJsuy'
 });
 
-var getTranscript = function(file) {
-    console.log('file: ' + file);
+var getTranscript = function(i) {
+    if (i == files.length) return;
+    var file = files[i];
+    console.log('File: ' + file);
 
     if (file.indexOf('.flac') !== -1) {
         console.log(' Requesting transcript for ' + file + '...');
         Request.request(file, speechToText, () => {
-            getTranscript(files[i++]);
+            getTranscript(++i);
         });
     } else {
         console.log(' Not a .flac file. Skipping...');
-        getTranscript(files[i++]);
+        getTranscript(++i);
     }
 }
 
-getTranscript(files[i]);
+getTranscript(0);
