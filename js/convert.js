@@ -5,7 +5,7 @@ var writeOutput = function(name, json, text) {
         if (e) console.log(e.message);
     });
     Fs.writeFile('output/txt/' + name + '.txt', text, (e) => {
-        console.log(e.message);
+        if (e) console.log(e.message);
     });
 }
 
