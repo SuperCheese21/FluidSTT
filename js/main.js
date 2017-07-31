@@ -4,20 +4,24 @@ const Request = require('./request.js')
 
 var i = 0;
 var files = Fs.readdirSync('audio/');
+
 var speechToText = new SpeechToTextV1 ({
     username: '62ab9399-13af-48c8-9a48-96b8506fcae1',
     password: 'iXH0UsqFJsuy'
 });
 
-function getTranscript() {
-    if (i == files.length) return;
-
-    var file = files[i++];
+var getTranscript = function(file) {
     console.log('file: ' + file);
 
-    Request.request(file, speechToText, () => {
-        getTranscript();
-    });
+    if (file.indexOf('.flac') !== -1) {
+        console.log(' Requesting transcript for ' + file + '...');
+        Request.request(file, speechToText, () => {
+            getTranscript(files[i++]);
+        });
+    } else {
+        console.log(' Not a .flac file. Skipping...');
+        getTranscript(files[i++]);
+    }
 }
 
-getTranscript();
+getTranscript(files[i]);
