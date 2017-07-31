@@ -1,8 +1,6 @@
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const Fs = require('fs');
-const Promise = require('promise');
 const Request = require('./request.js')
-const Convert = require('./convert.js');
 
 var i = 0;
 var files = Fs.readdirSync('audio/');

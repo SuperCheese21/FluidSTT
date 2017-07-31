@@ -2,16 +2,10 @@ const Fs = require('fs');
 
 var writeOutput = function(name, json, text) {
     Fs.writeFile('output/json/' + name + '.json', json, (e) => {
-        if (e) {
-            console.log(e.message);
-        }
-        console.log(name + '.json');
+        if (e) console.log(e.message);
     });
     Fs.writeFile('output/txt/' + name + '.txt', text, (e) => {
-        if (e) {
-            console.log(e.message);
-        }
-        console.log(name + '.txt');
+        console.log(e.message);
     });
 }
 

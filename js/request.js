@@ -3,7 +3,7 @@ const Convert = require('./convert.js');
 
 var request = function(file, speechToText, callback) {
     if (file.indexOf('.flac') !== -1) {
-        console.log('Requesting transcript for ' + file + '...');
+        console.log(' Requesting transcript for ' + file + '...');
 
         var params = {
             'audio': Fs.createReadStream('audio/' + file),
@@ -21,6 +21,7 @@ var request = function(file, speechToText, callback) {
             }
         });
     } else {
+        console.log(' Not a .flac file. Skipping...');
         callback();
     }
 }
