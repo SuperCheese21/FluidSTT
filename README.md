@@ -1,10 +1,12 @@
-## About
+# FluidSTT
+
+### About
 
 FluidSTT is a simple tool that generates transcripts for audio files, with the ability to batch process multiple files at once. 
 
 FluidSTT uses the IBM Watson Speech-To-Text API.
 
-## Installation
+### Installation
 
 1. Install [Node.js](https://nodejs.org/en/download/) and [NPM](https://www.npmjs.com/get-npm)
 2. Clone this repository
@@ -16,7 +18,7 @@ FluidSTT uses the IBM Watson Speech-To-Text API.
     npm install watson-developer-cloud
     ```
 
-## Usage
+### Usage
 
 Place your audio files into the provided **audio/** directory
 
