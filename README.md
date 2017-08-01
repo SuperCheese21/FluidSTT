@@ -17,6 +17,7 @@ FluidSTT uses the IBM Watson Speech-To-Text API.
     ```
     npm install watson-developer-cloud
     ```
+4. Open the **credentials.config** file and place your own API credentials inside. This step is necessary for this program to work.
 
 ### Usage
 
