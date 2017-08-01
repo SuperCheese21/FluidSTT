@@ -4,7 +4,8 @@ const Convert = require('./convert.js');
 var request = function(file, speechToText, callback) {
     var params = {
         'audio': Fs.createReadStream('audio/' + file),
-        'content_type': 'audio/flac'
+        'content_type': 'audio/flac',
+        'smart_formatting': true
     };
     speechToText.recognize(params, (error, transcript) => {
         if (error) {
