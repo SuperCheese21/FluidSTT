@@ -1,12 +1,23 @@
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
 const Fs = require('fs');
-const Request = require('./request.js')
+const Auth = require('./auth.js');
+const Request = require('./request.js');
 
 var files = Fs.readdirSync('audio/');
+var speechToText;
 
-var speechToText = new SpeechToTextV1 ({
-    username: '62ab9399-13af-48c8-9a48-96b8506fcae1',
-    password: 'iXH0UsqFJsuy'
+Auth.getCredentials((credentials) => {
+    speechToText = new SpeechToTextV1 ({
+        username: credentials[0],
+        password: credentials[1]
+    });
+    speechToText.getModels(null, function(error) {
+        if (error) {
+            console.log('Error: ' + error.message);
+        } else {
+            getTranscript(0);
+        }
+    });
 });
 
 var getTranscript = function(i) {
@@ -14,6 +25,7 @@ var getTranscript = function(i) {
     var file = files[i];
     console.log('File: ' + file);
 
+    // TODO: Add multi-format compatibility
     if (file.indexOf('.flac') !== -1) {
         console.log(' Requesting transcript for ' + file + '...');
         Request.request(file, speechToText, () => {
@@ -24,5 +36,3 @@ var getTranscript = function(i) {
         getTranscript(++i);
     }
 }
-
-getTranscript(0);

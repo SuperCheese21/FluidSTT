@@ -57,6 +57,14 @@ typings/
 # dotenv environment variables file
 .env
 
+# Transcript output files
 output/*
+
+# Input audio files
 audio/*
+
+# Placeholder file to keep audio directory
 !audio/.placeholder
+
+# Local API key credentials file
+credentials_private.config
