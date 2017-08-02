@@ -25,14 +25,13 @@ var getTranscript = function(i) {
     var file = files[i];
     console.log('File: ' + file);
 
-    // TODO: Add multi-format compatibility
-    if (file.indexOf('.flac') !== -1) {
+    if (file.indexOf('.flac') !== -1 || file.indexOf('.mp3') !== -1) {
         console.log(' Requesting transcript for ' + file + '...');
         Request.request(file, speechToText, () => {
             getTranscript(++i);
         });
     } else {
-        console.log(' Not a .flac file. Skipping...');
+        console.log(' Not an audio file. Skipping...');
         getTranscript(++i);
     }
 }
