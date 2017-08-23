@@ -63,6 +63,9 @@ output/*
 # Input audio files
 audio/*
 
+# Disabled audio files
+audio_disabled/*
+
 # Placeholder file to keep audio directory
 !audio/.placeholder
 

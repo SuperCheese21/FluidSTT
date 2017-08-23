@@ -1,12 +1,12 @@
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
-const Fs = require('fs');
-const Auth = require('./auth.js');
-const Request = require('./request.js');
+const fs = require('fs');
+const auth = require('./auth.js');
+const request = require('./request.js');
 
-var files = Fs.readdirSync('audio/');
+var files = fs.readdirSync('audio/');
 var speechToText;
 
-Auth.getCredentials((credentials) => {
+auth.getCredentials((credentials) => {
     speechToText = new SpeechToTextV1 ({
         username: credentials[0],
         password: credentials[1]
@@ -26,12 +26,12 @@ var getTranscript = function(i) {
     console.log('File: ' + file);
 
     if (file.indexOf('.flac') !== -1 || file.indexOf('.mp3') !== -1) {
-        console.log(' Requesting transcript for ' + file + '...');
-        Request.request(file, speechToText, () => {
+        console.log(' requesting transcript for ' + file + '...');
+        request.request(file, speechToText, () => {
             getTranscript(++i);
         });
     } else {
         console.log(' Not an audio file. Skipping...');
         getTranscript(++i);
     }
-}
+};

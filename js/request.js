@@ -1,11 +1,11 @@
-const Fs = require('fs');
-const Convert = require('./convert.js');
+const fs = require('fs');
+const convert = require('./convert.js');
 
 var request = function(file, speechToText, callback) {
     var fileType = file.split('.')[file.split('.').length - 1];
     var fileName = file.split('.' + fileType)[0];
     var params = {
-        'audio': Fs.createReadStream('audio/' + file),
+        'audio': fs.createReadStream('audio/' + file),
         'content_type': 'audio/' + fileType,
         'smart_formatting': true
     };
@@ -14,13 +14,13 @@ var request = function(file, speechToText, callback) {
             console.log(' Error: ', error.message);
         } else {
             var content = JSON.stringify(transcript, null, '\t');
-            Convert.convertJSON(fileName, content);
+            convert.convertJSON(fileName, content);
             console.log(' Done');
         }
         callback();
     });
-}
+};
 
 module.exports = {
     request: request
-}
+};

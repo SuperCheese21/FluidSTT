@@ -1,13 +1,13 @@
-const Fs = require('fs');
+const fs = require('fs');
 
 var writeOutput = function(name, json, text) {
-    Fs.writeFile('output/json/' + name + '.json', json, (error) => {
+    fs.writeFile('output/json/' + name + '.json', json, (error) => {
         if (error) console.log(e.message);
     });
-    Fs.writeFile('output/txt/' + name + '.txt', text, (error) => {
+    fs.writeFile('output/txt/' + name + '.txt', text, (error) => {
         if (error) console.log(e.message);
     });
-}
+};
 
 var convertJSON = function(file, json) {
     var content = JSON.parse(json);
@@ -17,8 +17,8 @@ var convertJSON = function(file, json) {
         text += content.results[i].alternatives[0].transcript;
     }
     writeOutput(file, json, text);
-}
+};
 
 module.exports = {
     convertJSON: convertJSON
-}
+};
