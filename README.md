@@ -4,7 +4,7 @@
 
 FluidSTT is a simple tool that generates transcripts for audio files, with the ability to batch process multiple files at once.
 
-FluidSTT uses the IBM Watson Speech-To-Text API.
+FluidSTT uses both the Google Cloud Speech API and the IBM Watson Speech-To-Text API
 
 ### Installation
 
