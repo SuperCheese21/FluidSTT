@@ -1,7 +1,7 @@
 {
   "name": "WatsonAPITest",
   "version": "1.5.0",
-  "description": "",
+  "description": "An easy to use NodeJS tool that generates transcripts for audio files",
   "main": "js/main.js",
   "scripts": {
     "start": "node js/main.js",
@@ -12,6 +12,11 @@
   "keywords": [],
   "author": "Ethan Shields",
   "license": "GNU",
+  "repository": {
+    "name": "FluidSTT",
+    "type": "git",
+    "url": "https://github.com/SuperCheese21/FluidSTT.git"
+  },
   "dependencies": {
     "@google-cloud/speech": "^0.10.2",
     "watson-developer-cloud": "^2.37.0",
