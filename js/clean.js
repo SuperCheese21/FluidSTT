@@ -1,20 +1,27 @@
-const Fs = require('fs');
+const fs = require('fs');
 
-var directories = [
-    'output/json/',
-    'output/txt/'
-];
+var include = ['output/json/', 'output/txt/'];
+var exclude = ['.placeholder', '.DS_Store'];
 
-for (var i = 0; i < directories.length; i++) {
-    var files = Fs.readdirSync(directories[i]);
+for (var i = 0; i < include.length; i++) {
+
+    var files = fs.readdirSync(include[i]);
 
     for (var j = 0; j < files.length; j++) {
         var file = files[j];
-        Fs.unlink(directories[i] + file, (e) => {
-            if (e) {
-                console.log('Error: ' + e.message);
+        var del = true;
+
+        for (var k = 0; k < exclude.length; k++) {
+            if (file == exclude[k]) {
+                del = false;
             }
-        });
-        console.log('Removed ' + file);
+        }
+
+        if (del) {
+            fs.unlink(include[i] + file, error => {
+                if (error) console.log('Error: ' + error.message);
+                else console.log('Removed ' + file);
+            })
+        }
     }
 }

@@ -17,16 +17,19 @@ FluidSTT uses both the Google Cloud Speech API and the IBM Watson Speech-To-Text
     ```
     npm install
     ```
-4. Open the **credentials.config** file and place your own API credentials inside. This step is necessary for this program to work.
 
 ### Usage
 
-Place your audio files into the provided **audio/** directory
+If you are using IBM:
+- Place your audio files into the provided **audio/** directory.
+- Open the **ibm.config** file and place your own API credentials inside. This step is necessary for this program to work.
+- ```npm run ibm``` to request transcripts using IBM Watson Speech-To-Text
 
-To get transcripts for your audio files:
-    ```
-    npm start
-    ```
+If you are using Google Cloud:
+- Upload your files to Google Cloud Storage
+- Open **main.js** and fill in the Project ID and list of audio files
+- Open **request_google.js** and fill in the Bucket ID
+- ```npm run google``` to request transcripts using Google Cloud Speech-To-Text
 
 For each audio file, a .json file and a .txt file will be generated inside the **output/** directory.
 

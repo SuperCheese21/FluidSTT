@@ -57,8 +57,12 @@ typings/
 # dotenv environment variables file
 .env
 
+#.DS_Store files
+.DS_Store
+
 # Transcript output files
-output/*
+output/json/*.json
+output/txt/*.txt
 
 # Input audio files
 audio/*
@@ -66,8 +70,5 @@ audio/*
 # Disabled audio files
 audio_disabled/*
 
-# Placeholder file to keep audio directory
-!audio/.placeholder
-
-# Local API key credentials file
-credentials_private.config
+# Local API key credentials files
+*private.config
