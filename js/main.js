@@ -23,6 +23,7 @@ if (argv.s == 'google') {
     speechToText = GoogleCloudSTT({
         projectId: PROJECT_ID
     });
+    getTranscript(0);
 } else if (argv.s == 'ibm') {
     request = require('./request_ibm.js');
     files = fs.readdirSync('audio/');
@@ -56,5 +57,3 @@ var getTranscript = function(i) {
         getTranscript(++i);
     }
 };
-
-getTranscript(0);

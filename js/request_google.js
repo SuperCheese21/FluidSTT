@@ -7,7 +7,7 @@ var request = function(file, speech, callback) {
 
     var req = {
         config: {
-            encoding: file.indexOf('.flac') !== -1 ? 'FLAC' : 'LINEAR16',
+            encoding: 'FLAC',
             languageCode: 'en-US'
         },
         audio: {

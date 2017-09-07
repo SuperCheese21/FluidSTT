@@ -3,7 +3,7 @@ const readline = require('readline');
 
 var writeCredentials = function(username, password) {
     fs.writeFile(
-        './credentials.config',
+        './ibm.config',
         username + '\n' + password,
         (error) => {
             if (error) console.log(error.message);
@@ -34,7 +34,7 @@ var readCredentials = function(callback) {
 var getCredentials = function(callback) {
     var credentials = [];
 
-    fs.readFile('./credentials.config', 'utf8', (error, data) => {
+    fs.readFile('./ibm.config', 'utf8', (error, data) => {
         if (error) {
             console.log('Error: ' + error.message);
         } else {
