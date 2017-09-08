@@ -1,6 +1,6 @@
 {
   "name": "FluidSTT",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "An easy to use NodeJS tool that generates transcripts for audio files",
   "main": "js/main.js",
   "scripts": {
